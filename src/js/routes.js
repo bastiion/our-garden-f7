@@ -1,5 +1,5 @@
 
-import HomePage from '../pages/home.jsx';
+import HomePage from '../pages/home.tsx';
 import AboutPage from '../pages/about.jsx';
 import FormPage from '../pages/form.jsx';
 import CatalogPage from '../pages/catalog.jsx';

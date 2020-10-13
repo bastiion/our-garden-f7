@@ -1,5 +1,5 @@
-import React from 'react';
-import { Device }  from 'framework7/framework7-lite.esm.bundle.js';
+import * as  React from 'react'
+import { Device }  from 'framework7/framework7-lite.esm.bundle.js'
 import {
   App,
   Panel,
@@ -20,13 +20,14 @@ import {
   ListInput,
   ListButton,
   BlockFooter
-} from 'framework7-react';
-import cordovaApp from '../js/cordova-app';
-import routes from '../js/routes';
+} from 'framework7-react'
+import cordovaApp from '../js/cordova-app'
+import routes from '../js/routes'
+import {Framework7Params} from "framework7/components/app/app-class"
 
-export default class extends React.Component {
-  constructor() {
-    super();
+export default class extends React.Component<any, {f7params: Framework7Params, username: string, password: string}> {
+  constructor(props: any) {
+    super(props)
 
     this.state = {
       // Framework7 Parameters
@@ -36,7 +37,7 @@ export default class extends React.Component {
         theme: 'auto', // Automatic theme detection
 
         // App root data
-        data: function () {
+        data () {
           return {
 
             // Demo products for Catalog section
@@ -57,11 +58,11 @@ export default class extends React.Component {
                 description: 'Expedita sequi perferendis quod illum pariatur aliquam, alias laboriosam! Vero blanditiis placeat, mollitia necessitatibus reprehenderit. Labore dolores amet quos, accusamus earum asperiores officiis assumenda optio architecto quia neque, quae eum.'
               },
             ]
-          };
+          }
         },
 
         // App routes
-        routes: routes,
+        routes,
 
         // Register service worker
         serviceWorker: Device.cordova ? {} : {
@@ -179,16 +180,16 @@ export default class extends React.Component {
   }
   alertLoginData() {
     this.$f7.dialog.alert('Username: ' + this.state.username + '<br>Password: ' + this.state.password, () => {
-      this.$f7.loginScreen.close();
-    });
+      this.$f7.loginScreen.close()
+    })
   }
   componentDidMount() {
     this.$f7ready((f7) => {
       // Init cordova APIs (see cordova-app.js)
       if (Device.cordova) {
-        cordovaApp.init(f7);
+        cordovaApp.init(f7)
       }
       // Call F7 APIs here
-    });
+    })
   }
 }

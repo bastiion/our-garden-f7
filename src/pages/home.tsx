@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react'
 import {
   Page,
   Navbar,
@@ -15,7 +15,8 @@ import {
   Row,
   Col,
   Button
-} from 'framework7-react';
+} from 'framework7-react'
+import UserList from "./UserList"
 
 export default () => (
   <Page name="home">
@@ -24,24 +25,22 @@ export default () => (
       <NavLeft>
         <Link iconIos="f7:menu" iconAurora="f7:menu" iconMd="material:menu" panelOpen="left" />
       </NavLeft>
-      <NavTitle sliding>Our Garden</NavTitle>
+      <NavTitle sliding>Our Garden - Wurzelwerk</NavTitle>
       <NavRight>
         <Link iconIos="f7:menu" iconAurora="f7:menu" iconMd="material:menu" panelOpen="right" />
       </NavRight>
-      <NavTitleLarge>Our Garden</NavTitleLarge>
+      <NavTitleLarge>Wurzelwerk</NavTitleLarge>
     </Navbar>
 
     {/* Page content */}
     <Block strong>
-      <p>This is an example of tabs-layout application. The main point of such tabbed layout is that each tab contains independent view with its own routing and navigation.</p>
-
-      <p>Each tab/view may have different layout, different navbar type (dynamic, fixed or static) or without navbar like this tab.</p>
+      <p>Das Wurzelwerk begrüßt dich und heißt dich WIllkommen in der digitalen Garten-Verwaltung</p>
+        <p>Vielfalt, eine gute Ernte und Frohes Gärtnern!</p>
     </Block>
-    <BlockTitle>Navigation</BlockTitle>
-    <List>
-      <ListItem link="/about/" title="About"/>
-      <ListItem link="/form/" title="Form"/>
-    </List>
+    <BlockTitle>Users</BlockTitle>
+      <Block strong>
+          <UserList/>
+      </Block>
 
     <BlockTitle>Modals</BlockTitle>
     <Block strong>
@@ -51,18 +50,6 @@ export default () => (
         </Col>
         <Col width="50">
           <Button fill raised loginScreenOpen="#my-login-screen">Login Screen</Button>
-        </Col>
-      </Row>
-    </Block>
-
-    <BlockTitle>Panels</BlockTitle>
-    <Block strong>
-      <Row>
-        <Col width="50">
-          <Button fill raised panelOpen="left">Left Panel</Button>
-        </Col>
-        <Col width="50">
-          <Button fill raised panelOpen="right">Right Panel</Button>
         </Col>
       </Row>
     </Block>
@@ -82,4 +69,4 @@ export default () => (
       />
     </List>
   </Page>
-);
+)

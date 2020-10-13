@@ -21,7 +21,7 @@ const isElectronWatch = process.env.ELECTRON_WATCH || false;
 module.exports = {
   mode: env,
   entry: {
-    app: './src/js/app.js',
+    app: './src/js/App.tsx',
   },
   output: {
     path: resolvePath(isCordova ? (isElectronWatch ? 'cordova/platforms/electron/www' : 'cordova/www') : 'www'),
@@ -32,7 +32,7 @@ module.exports = {
     hotUpdateMainFilename: 'hot/hot-update.json',
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.ts', '.js', '.tsx', '.jsx', '.json'],
     alias: {
 
       '@': resolvePath('src'),
@@ -59,7 +59,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(mjs|js|jsx)$/,
+        test: /\.(mjs|js|jsx|ts|tsx)$/,
         use: 'babel-loader',
         include: [
           resolvePath('src'),

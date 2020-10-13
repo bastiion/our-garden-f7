@@ -72,9 +72,9 @@ var cordovaApp = {
         return false;
       }
 
-      const currentView = f7.views.current;
-      if (currentView && currentView.router && currentView.router.history.length > 1) {
-        currentView.router.back();
+      const currentView2 = f7.views.current;
+      if (currentView2 && currentView2.router && currentView2.router.history.length > 1) {
+        currentView2.router.back();
         e.preventDefault();
         return false;
       }
