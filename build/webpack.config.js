@@ -21,6 +21,8 @@ const isElectronWatch = process.env.ELECTRON_WATCH || false;
 module.exports = {
   mode: env,
   entry: {
+    hot: ['react-hot-loader/patch', // activate HMR for React
+    'webpack/hot/only-dev-server',], // bundle the client for hot reloading, only- means to only hot reload for successful updates
     app: './src/js/App.tsx',
   },
   output: {
@@ -28,8 +30,6 @@ module.exports = {
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].js',
     publicPath: '',
-    hotUpdateChunkFilename: 'hot/hot-update.js',
-    hotUpdateMainFilename: 'hot/hot-update.json',
   },
   resolve: {
     extensions: ['.ts', '.js', '.tsx', '.jsx', '.json'],
