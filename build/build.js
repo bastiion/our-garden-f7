@@ -2,13 +2,15 @@ const webpack = require('webpack');
 const ora = require('ora');
 const rm = require('rimraf');
 const chalk = require('chalk');
-const config = require('./webpack.config.js');
 
 const env = process.env.NODE_ENV || 'development';
+const confPath = env === 'development' ? './config/webpack/dev.js' : './config/webpack/prod.js';
+const config =require(confPath);
+
 const target = process.env.TARGET || 'web';
 const isCordova = target === 'cordova'
 
-const spinner = ora(env === 'production' ? 'building for production...' : 'building development version...');
+const spinner = ora(  `building for ${env}...` );
 spinner.start();
 
 rm(isCordova ? './cordova/www' : './www/', (removeErr) => {

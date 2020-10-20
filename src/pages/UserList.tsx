@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 import {useQuery, gql, QueryResult} from '@apollo/client'
 import {Card} from 'framework7-react'
-import * as React from 'react'
+import React from 'react'
 import {_UserOrdering, QueryUserArgs, User} from '../types/graphql'
 
 
@@ -23,7 +23,7 @@ const GET_USER = gql`
         }
     }
 `
-export default () => {
+export const UserList: React.FC =  () => {
     const [order, setOrder] = useState<'asc' | 'desc'>('asc')
     const [orderBy, setOrderBy] = useState('name')
     const [page] = useState(0)
@@ -86,7 +86,7 @@ export default () => {
                         <tbody>
                         {data.User.map(n => {
                             return (
-                                <tr>
+                                <tr key={n.userId}>
                                     <td className='label-cell'>{`${n.name}`}</td>
                                     <td className='numeric-cell'>{n.avgStars ? n.avgStars.toFixed(2) : '-'}</td>
                                     <td className='numeric-cell'>{n.numReviews}</td>

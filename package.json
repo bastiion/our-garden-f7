@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "npm run dev",
-    "dev": "cross-env NODE_ENV=development webpack serve --hot --host 0.0.0.0 --config ./build/webpack.config.js",
+    "dev": "cross-env NODE_ENV=development cross-env TARGET=web webpack serve --host 0.0.0.0 --config ./build/config/webpack/dev.js",
     "codegen": "gql-gen",
     "build-dev": "cross-env NODE_ENV=development node ./build/build.js",
     "build-prod": "cross-env NODE_ENV=production node ./build/build.js",
@@ -19,8 +19,12 @@
     "build-prod-cordova-android": "cross-env TARGET=cordova cross-env NODE_ENV=production node ./build/build.js && cd cordova && cordova build android",
     "build-dev-cordova-electron": "cross-env TARGET=cordova cross-env NODE_ENV=development node ./build/build.js && cd cordova && cordova build electron",
     "build-prod-cordova-electron": "cross-env TARGET=cordova cross-env NODE_ENV=production node ./build/build.js && cd cordova && cordova build electron",
+    "install-android-debug": "adb install -r cordova/platforms/android/app/build/outputs/apk/debug/app-debug.apk ",
+    "install-android-release": "adb install -r cordova/platforms/android/app/build/outputs/apk/release/app-debug.apk ",
     "cordova-electron": "cross-env TARGET=cordova cross-env NODE_ENV=development node ./build/build.js && concurrently --kill-others \"cross-env TARGET=cordova cross-env ELECTRON_WATCH=true cross-env NODE_ENV=development cross-env webpack --progress --config ./build/webpack.config.js --watch\" \"cd cordova && cordova run electron --nobuild\"",
-    "postinstall": "cpy ./node_modules/framework7-icons/fonts/*.* ./src/fonts/"
+    "postinstall": "cpy ./node_modules/framework7-icons/fonts/*.* ./src/fonts/",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "browserslist": [
     "Android >= 7",
@@ -51,12 +55,17 @@
     "@graphql-codegen/cli": "^1.17.10",
     "@graphql-codegen/typescript": "^1.17.10",
     "@graphql-codegen/typescript-resolvers": "^1.17.10",
+    "@storybook/addon-actions": "^6.0.26",
+    "@storybook/addon-essentials": "^6.0.26",
+    "@storybook/addon-links": "^6.0.26",
+    "@storybook/react": "^6.0.26",
     "@types/lodash": "4.14.136",
     "@types/node": "^14.11.8",
     "@types/react": "16.9.52",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.6",
     "@types/recharts": "^1.8.16",
+    "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.1.0",
     "chalk": "^4.1.0",
     "concurrently": "^5.3.0",
@@ -66,6 +75,7 @@
     "css-loader": "^4.3.0",
     "file-loader": "^6.1.1",
     "html-webpack-plugin": "^4.5.0",
+    "image-webpack-loader": "^6.0.0",
     "mini-css-extract-plugin": "^1.0.0",
     "node-sass": "^4.14.1",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
@@ -73,8 +83,10 @@
     "postcss-loader": "^4.0.4",
     "postcss-preset-env": "^6.7.0",
     "react-hot-loader": "^4.13.0",
+    "react-is": "^16.13.1",
     "rimraf": "^3.0.2",
     "sass-loader": "^10.0.3",
+    "source-map-loader": "^1.1.1",
     "style-loader": "^2.0.0",
     "terser-webpack-plugin": "^4.2.3",
     "ts-node": "^8.3.0",
@@ -86,6 +98,7 @@
     "webpack": "^4.44.2",
     "webpack-cli": "^4.0.0",
     "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^4.2.2",
     "workbox-webpack-plugin": "^5.1.4"
   }
 }

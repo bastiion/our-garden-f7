@@ -16,9 +16,10 @@ import {
   Col,
   Button
 } from 'framework7-react'
-import UserList from "./UserList"
+import { UserList } from './UserList'
+import { hot } from 'react-hot-loader'
 
-export default () => (
+const Home = () => (
   <Page name="home">
     {/* Top Navbar */}
     <Navbar large sliding={false}>
@@ -34,7 +35,7 @@ export default () => (
 
     {/* Page content */}
     <Block strong>
-      <p>Das Wurzelwerk begrüßt dich und heißt dich WIllkommen in der digitalen Garten-Verwaltung</p>
+      <p>Das 16. Wurzelwerk begrüßt dich und heißt dich WIllkommen in der digitalen Garten-Verwaltung</p>
         <p>Vielfalt, eine gute Ernte und Frohes Gärtnern!</p>
     </Block>
     <BlockTitle>Users</BlockTitle>
@@ -70,3 +71,6 @@ export default () => (
     </List>
   </Page>
 )
+declare let module: Record<string, unknown>
+
+export default hot(module)(Home)
