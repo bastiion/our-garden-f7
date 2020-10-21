@@ -1,56 +1,73 @@
-import * as React from 'react'
 import {
-  Page,
-  Navbar,
-  NavLeft,
-  NavTitle,
-  NavTitleLarge,
-  NavRight,
-  Link,
-  Toolbar,
   Block,
   BlockTitle,
+  Button,
+  Col,
+  Link,
   List,
   ListItem,
+  Navbar,
+  NavLeft,
+  NavRight,
+  NavTitle,
+  NavTitleLarge,
+  Page,
   Row,
-  Col,
-  Button
 } from 'framework7-react'
-import { UserList } from './UserList'
+import * as React from 'react'
 import { hot } from 'react-hot-loader'
+
+import { UserList } from './UserList'
 
 const Home = () => (
   <Page name="home">
     {/* Top Navbar */}
     <Navbar large sliding={false}>
       <NavLeft>
-        <Link iconIos="f7:menu" iconAurora="f7:menu" iconMd="material:menu" panelOpen="left" />
+        <Link
+          iconIos="f7:menu"
+          iconAurora="f7:menu"
+          iconMd="material:menu"
+          panelOpen="left"
+        />
       </NavLeft>
       <NavTitle sliding>Our Garden - Wurzelwerk</NavTitle>
       <NavRight>
-        <Link iconIos="f7:menu" iconAurora="f7:menu" iconMd="material:menu" panelOpen="right" />
+        <Link
+          iconIos="f7:menu"
+          iconAurora="f7:menu"
+          iconMd="material:menu"
+          panelOpen="right"
+        />
       </NavRight>
       <NavTitleLarge>Wurzelwerk</NavTitleLarge>
     </Navbar>
 
     {/* Page content */}
     <Block strong>
-      <p>Das 16. Wurzelwerk begrüßt dich und heißt dich WIllkommen in der digitalen Garten-Verwaltung</p>
-        <p>Vielfalt, eine gute Ernte und Frohes Gärtnern!</p>
+      <p>
+        Das 16. Wurzelwerk begrüßt dich und heißt dich WIllkommen in der
+        digitalen Garten-Verwaltung
+      </p>
+      <p>Vielfalt, eine gute Ernte und Frohes Gärtnern!</p>
     </Block>
     <BlockTitle>Users</BlockTitle>
-      <Block strong>
-          <UserList/>
-      </Block>
+    <Block strong>
+      <UserList />
+    </Block>
 
     <BlockTitle>Modals</BlockTitle>
     <Block strong>
       <Row>
         <Col width="50">
-          <Button fill raised popupOpen="#my-popup">Popup</Button>
+          <Button fill raised popupOpen="#my-popup">
+            Popup
+          </Button>
         </Col>
         <Col width="50">
-          <Button fill raised loginScreenOpen="#my-login-screen">Login Screen</Button>
+          <Button fill raised loginScreenOpen="#my-login-screen">
+            Login Screen
+          </Button>
         </Col>
       </Row>
     </Block>
@@ -73,4 +90,4 @@ const Home = () => (
 )
 declare let module: Record<string, unknown>
 
-export default hot(module)(Home)
+export default hot( module )( Home )

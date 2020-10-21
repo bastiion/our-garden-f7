@@ -1,9 +1,9 @@
-import React from 'react';
-import { Page, Navbar, List, ListItem } from 'framework7-react';
+import { List, ListItem,Navbar, Page } from 'framework7-react'
+import React from 'react'
 
 export default class extends React.Component {
   constructor() {
-    super();
+    super()
 
     this.state = {
       products: this.$f7.data.products,
@@ -14,7 +14,7 @@ export default class extends React.Component {
       <Page name="catalog">
         <Navbar title="Catalog" />
         <List>
-          {this.state.products.map((product) => (
+          {this.state.products.map(( product ) => (
             <ListItem
               key={product.id}
               title={product.title}
@@ -23,6 +23,6 @@ export default class extends React.Component {
           ))}
         </List>
       </Page>
-    );
+    )
   }
 }

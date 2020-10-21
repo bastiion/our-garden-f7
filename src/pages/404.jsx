@@ -1,5 +1,5 @@
-import React from 'react';
-import { Page, Navbar, Block } from 'framework7-react';
+import { Block,Navbar, Page } from 'framework7-react'
+import React from 'react'
 
 export default () => (
   <Page>
@@ -9,4 +9,4 @@ export default () => (
       <p>Requested content not found.</p>
     </Block>
   </Page>
-);
+)

@@ -1,16 +1,14 @@
+import NotFoundPage from '../pages/404.jsx'
+import AboutPage from '../pages/about.jsx'
+import CatalogPage from '../pages/catalog.jsx'
+import DynamicRoutePage from '../pages/dynamic-route.jsx'
+import FormPage from '../pages/form.jsx'
+import HomePage from '../pages/home.tsx'
+import ProductPage from '../pages/product.jsx'
+import RequestAndLoad from '../pages/request-and-load.jsx'
+import SettingsPage from '../pages/settings.jsx'
 
-import HomePage from '../pages/home.tsx';
-import AboutPage from '../pages/about.jsx';
-import FormPage from '../pages/form.jsx';
-import CatalogPage from '../pages/catalog.jsx';
-import ProductPage from '../pages/product.jsx';
-import SettingsPage from '../pages/settings.jsx';
-
-import DynamicRoutePage from '../pages/dynamic-route.jsx';
-import RequestAndLoad from '../pages/request-and-load.jsx';
-import NotFoundPage from '../pages/404.jsx';
-
-var routes = [
+const routes = [
   {
     path: '/',
     component: HomePage,
@@ -42,23 +40,20 @@ var routes = [
   },
   {
     path: '/request-and-load/user/:userId/',
-    async: function (routeTo, routeFrom, resolve, reject) {
-      // Router instance
-      var router = this;
-
+    async: function ( routeTo, routeFrom, resolve/*, reject*/ ) {
       // App instance
-      var app = router.app;
+      const app = this.app
 
       // Show Preloader
-      app.preloader.show();
+      app.preloader.show()
 
       // User ID from request
-      var userId = routeTo.params.userId;
+      //const userId = routeTo.params.userId
 
       // Simulate Ajax Request
-      setTimeout(function () {
+      setTimeout( function () {
         // We got user data from request
-        var user = {
+        const user = {
           firstName: 'Vladimir',
           lastName: 'Kharlampidi',
           about: 'Hello, i am creator of Framework7! Hope you like it!',
@@ -71,10 +66,10 @@ var routes = [
               title: 'Framework7 Forum',
               url: 'http://forum.framework7.io',
             },
-          ]
-        };
+          ],
+        }
         // Hide Preloader
-        app.preloader.hide();
+        app.preloader.hide()
 
         // Resolve route to load page
         resolve(
@@ -84,16 +79,16 @@ var routes = [
           {
             context: {
               user: user,
-            }
+            },
           }
-        );
-      }, 1000);
+        )
+      }, 1000 )
     },
   },
   {
     path: '(.*)',
     component: NotFoundPage,
   },
-];
+]
 
-export default routes;
+export default routes
