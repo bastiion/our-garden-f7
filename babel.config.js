@@ -4,6 +4,9 @@ module.exports = {
     '@babel/preset-typescript',
     ['@babel/preset-env', {
       modules: false,
+      targets: {
+        esmodules: true
+      }
     }],
   ],
   plugins: [
