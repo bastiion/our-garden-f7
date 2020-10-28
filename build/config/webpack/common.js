@@ -1,21 +1,23 @@
 // shared config (dev and prod)
-const {resolve} = require('path');
-const {CheckerPlugin} = require('awesome-typescript-loader');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const env = process.env.NODE_ENV || 'development';
+const {resolve} = require( 'path' )
+const {CheckerPlugin} = require( 'awesome-typescript-loader' )
+const HtmlWebpackPlugin = require( 'html-webpack-plugin' )
+const CopyWebpackPlugin = require( 'copy-webpack-plugin' )
+const WorkboxPlugin = require( 'workbox-webpack-plugin' )
 
-function resolvePath(dir) {
-  return resolve(__dirname, '../../../', dir);
+const env = process.env.NODE_ENV || 'development'
+
+function resolvePath( dir ) {
+  return resolve( __dirname, '../../../', dir )
 }
 
-const target = process.env.TARGET || 'web';
+const target = process.env.TARGET || 'web'
 const isCordova = target === 'cordova'
 module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
   },
-  context: resolvePath('src'),
+  context: resolvePath( 'src' ),
   module: {
     rules: [
       {
@@ -59,7 +61,7 @@ module.exports = {
   },
   plugins: [
     new CheckerPlugin(),
-    new HtmlWebpackPlugin({
+    new HtmlWebpackPlugin( {
         filename: 'index.html',
         template: resolvePath('src/index.html'),
         inject: true,
@@ -71,23 +73,28 @@ module.exports = {
           removeStyleLinkTypeAttributes: true,
           useShortDoctype: true
         } : false,
-      }),
-    new CopyWebpackPlugin({
+      } ),
+    new CopyWebpackPlugin( {
       patterns: [
         {
           noErrorOnMissing: true,
-          from: resolvePath('src/static'),
-          to: resolvePath(isCordova ? 'cordova/www/static' : 'www/static'),
+          from: resolvePath( 'src/static' ),
+          to: resolvePath( isCordova ? 'cordova/www/static' : 'www/static' ),
         },
         {
           noErrorOnMissing: false,
-          from: resolvePath('src/manifest.json'),
-          to: resolvePath('www/manifest.json'),
+          from: resolvePath( 'src/manifest.json' ),
+          to: resolvePath( 'www/manifest.json' ),
         },
       ],
-    }),
+    } ),
+    ...( !isCordova ? [
+      new WorkboxPlugin.InjectManifest( {
+        swSrc: resolvePath( 'src/service-worker.js' ),
+      } )
+    ] : [] ),
   ],
   performance: {
     hints: false,
   },
-};
+}
