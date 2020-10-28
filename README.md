@@ -1,4 +1,4 @@
-# Our Garden
+# Pergola Frontend
 
 ## Framework7 CLI Options
 
@@ -6,7 +6,6 @@ Framework7 app created with following options:
 
 ```
 {
-  "cwd": "/home/basti/daten/Projekte/prototype_fund/2020/GartenApp/workspace/my-app-f7-b",
   "type": [
     "web",
     "pwa",
