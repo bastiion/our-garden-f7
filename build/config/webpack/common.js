@@ -63,7 +63,7 @@ module.exports = {
     new CheckerPlugin(),
     new HtmlWebpackPlugin( {
         filename: 'index.html',
-        template: resolvePath('src/index.html'),
+        template: resolvePath( 'src/index.ejs' ),
         inject: true,
         minify: env === 'production' ? {
           collapseWhitespace: true,
